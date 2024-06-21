@@ -67,14 +67,14 @@ app.post('/post', async function(req, res) {
     }
 
     try {
-        const obj = JSON.parse(data);
         const embed = new MessageBuilder();
+        console.log(`Nouvelle transaction ${obj.kofi_transaction_id} - Type : ${obj.type} - Montant : ${obj.amount}`);
         embed.setTitle('New Ko-Fi Supporter!');
         embed.setColor(2730976);
-        embed.addField(`Transaction`, `${obj.kofi_transaction_id`, true);
+        embed.addField(`Transaction`, `${obj.kofi_transaction_id}`, true);
+        embed.addField(`De`, `${obj.from_name}`, true);
         embed.addField(`Type`, `${obj.type}`, true);
-        embed.addField(`From`, `${obj.from_name}`, true);
-        embed.addField(`Amount`, `${obj.amount}`, true);
+        embed.addField(`Montant`, `${obj.amount}`, true);
         embed.addField(`Message`, `${obj.message}`);
         embed.setTimestamp();
         await webhook.send(embed);
