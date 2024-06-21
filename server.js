@@ -58,7 +58,13 @@ app.use(bodyParser.json());
 
 app.post('/post', async function(req, res) {
     const data = req.body.data;
+    const obj = JSON.parse(data);
     if (!data) return;
+
+    // Vérification du verification_token
+    if (!obj.verification_token || obj.verification_token!== config.verification_token) {
+        return res.status(401).json({ success: false, error: 'Invalid verification token' });
+    }
 
     try {
         const obj = JSON.parse(data);
