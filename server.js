@@ -65,6 +65,8 @@ app.post('/post', async function(req, res) {
         const embed = new MessageBuilder();
         embed.setTitle('New Ko-Fi Supporter!');
         embed.setColor(2730976);
+        embed.addField(`Transaction`, `${obj.kofi_transaction_id`, true);
+        embed.addField(`Type`, `${obj.type}`, true);
         embed.addField(`From`, `${obj.from_name}`, true);
         embed.addField(`Amount`, `${obj.amount}`, true);
         embed.addField(`Message`, `${obj.message}`);
